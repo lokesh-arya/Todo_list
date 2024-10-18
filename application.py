@@ -1,5 +1,5 @@
 import tkinter as tk
-from ToDo_List_Application import *
+from ToDo_List import *
 
 app = TodoApp()
 root = tk.Tk()
