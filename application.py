@@ -92,20 +92,22 @@ def delete_task(index):
     print("done")
 
 def task_frame(frame, task, index):
-    task_box = tk.Frame(frame, bg='lightblue')
+
+    task_box = tk.Frame(frame, bg='lightyellow')
     task_box.pack(padx=10, pady=10, fill='x')
+    tk.Label(task_box, text='Title').pack(padx=10, pady=10, fill='x')
+    title_label = tk.Label(task_box, text=task.title, bg='lightgreen')
+    title_label.pack(padx=10, fill='x')
 
-    title_label = tk.Label(task_box, text=task.title, bg='lightgreen',justify=tk.LEFT)
-    title_label.pack(padx=10, pady=10, fill='x')
+    tk.Label(task_box, text='Description').pack(padx=10, pady=10, fill='x')
+    content = tk.Label(task_box, text=task.description, wraplength=400)
+    content.pack(padx=10, fill='x')
 
-    content = tk.Label(task_box, text=task.description, bg='red', wraplength=400, justify=tk.LEFT)
-    content.pack(padx=10, pady=10, fill='x')
-
-    footer = tk.Frame(task_box, bg='grey')
+    footer = tk.Frame(task_box)
     footer.pack(padx=10, pady=10, fill='x')
 
     status = "Completed ✓" if task.completed else "Incomplete"
-    completed_lable = tk.Label(footer, text=status, bg='green',)
+    completed_lable = tk.Label(footer, text=status, bg='lightgreen',)
     completed_lable.pack(padx=10, pady=10, side=tk.LEFT)
 
     if status == "Incomplete":
@@ -164,14 +166,14 @@ btn_urgent.pack(side=tk.LEFT, padx=5, pady=5)
 btn_add_task.pack(side=tk.RIGHT, padx=5, pady=5)
 
 # Create frames
-work_frame = tk.Frame(window, bg='red')
-personal_frame = tk.Frame(window, bg='green')
-urgent_frame = tk.Frame(window, bg='blue')
+work_frame = tk.Frame(window, bg='lightblue')
+personal_frame = tk.Frame(window, bg='lightblue')
+urgent_frame = tk.Frame(window, bg='lightblue')
+
 
 # Store frames in a list
 frames = [work_frame, personal_frame, urgent_frame]
 
-row = {'title':'hello', 'content':'testing lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem', 'category':'work'}
 task_list = app.tasks
 display_task(task_list)
 
