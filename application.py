@@ -44,18 +44,17 @@ def add_task_function():
     description_var = tk.StringVar()
     category_var = tk.StringVar()
 
-    new_title = tk.Entry(add_task_window, textvariable=title_var)
-    new_description = tk.Entry(add_task_window, textvariable=description_var)
-    new_category = tk.Entry(add_task_window, textvariable=category_var)
-
-    new_title.pack()
-    new_description.pack()
-    new_category.pack()
+    tk.Label(add_task_window, text='Description').grid(row=1,column=0)
+    tk.Label(add_task_window, text='Title').grid(row=0,column=0)
+    tk.Label(add_task_window, text='Category').grid(row=2,column=0)
+    tk.Entry(add_task_window, textvariable=title_var).grid(row=0,column=1)
+    tk.Entry(add_task_window, textvariable=description_var).grid(row=1,column=1)
+    tk.Entry(add_task_window, textvariable=category_var).grid(row=2,column=1)
 
     cancel_button = tk.Button(add_task_window,text='Cancel', command=lambda: cancel_function())
     save_button = tk.Button(add_task_window,text='Save', command=lambda: save_function(False, title_var, description_var, category_var))
-    cancel_button.pack(side=tk.LEFT)
-    save_button.pack(side=tk.LEFT)
+    cancel_button.grid(row=3, column=0)
+    save_button.grid(row=3, column=1)
 
 def edit_task(index):
     window.pack_forget()
@@ -68,18 +67,17 @@ def edit_task(index):
     category_var = tk.StringVar()
     category_var.set(task_list[index].category)
 
-    edit_title = tk.Entry(edit_window, textvariable=title_var)
-    edit_description = tk.Entry(edit_window, textvariable=description_var)
-    edit_category = tk.Entry(edit_window, textvariable=category_var)
-
-    edit_title.pack()
-    edit_description.pack()
-    edit_category.pack()
+    tk.Label(edit_window, text='Description').grid(row=1,column=0)
+    tk.Label(edit_window, text='Title').grid(row=0,column=0)
+    tk.Label(edit_window, text='Category').grid(row=2,column=0)
+    tk.Entry(edit_window, textvariable=title_var).grid(row=0,column=1)
+    tk.Entry(edit_window, textvariable=description_var).grid(row=1,column=1)
+    tk.Entry(edit_window, textvariable=category_var).grid(row=2,column=1)
 
     cancel_button = tk.Button(edit_window,text='Cancel', command=lambda: cancel_function())
     save_button = tk.Button(edit_window,text='Save', command=lambda: save_function(index, title_var, description_var, category_var))
-    cancel_button.pack(side=tk.LEFT)
-    save_button.pack(side=tk.LEFT)
+    cancel_button.grid(row=3, column=0)
+    save_button.grid(row=3, column=1)
 
 def mark_complete_task(index):
     app.mark_completed(index)
