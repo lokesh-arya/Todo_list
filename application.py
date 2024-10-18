@@ -14,7 +14,7 @@ def cancel_function():
         child.destroy()
     edit_window.pack_forget()
     add_task_window.pack_forget()
-    window.pack()
+    window.pack(fill='both',expand=True)
 
 def save_function(index, title, description, category):
     if index:
@@ -31,7 +31,7 @@ def save_function(index, title, description, category):
         child.destroy()
     edit_window.pack_forget()
     add_task_window.pack_forget()
-    window.pack()
+    window.pack(fill='both',expand=True)
     destory_all_task()
     display_task(task_list)
     print("done")
@@ -47,9 +47,9 @@ def add_task_function():
     tk.Label(add_task_window, text='Description').grid(row=1,column=0)
     tk.Label(add_task_window, text='Title').grid(row=0,column=0)
     tk.Label(add_task_window, text='Category').grid(row=2,column=0)
-    tk.Entry(add_task_window, textvariable=title_var).grid(row=0,column=1)
-    tk.Entry(add_task_window, textvariable=description_var).grid(row=1,column=1)
-    tk.Entry(add_task_window, textvariable=category_var).grid(row=2,column=1)
+    tk.Entry(add_task_window, textvariable=title_var, width=60).grid(row=0,column=1)
+    tk.Entry(add_task_window, textvariable=description_var, width=60).grid(row=1,column=1)
+    tk.Entry(add_task_window, textvariable=category_var, width=60).grid(row=2,column=1)
 
     cancel_button = tk.Button(add_task_window,text='Cancel', command=lambda: cancel_function())
     save_button = tk.Button(add_task_window,text='Save', command=lambda: save_function(False, title_var, description_var, category_var))
@@ -58,7 +58,7 @@ def add_task_function():
 
 def edit_task(index):
     window.pack_forget()
-    edit_window.pack()
+    edit_window.pack(fill='both')
     
     title_var = tk.StringVar()
     title_var.set(task_list[index].title)
@@ -70,9 +70,9 @@ def edit_task(index):
     tk.Label(edit_window, text='Description').grid(row=1,column=0)
     tk.Label(edit_window, text='Title').grid(row=0,column=0)
     tk.Label(edit_window, text='Category').grid(row=2,column=0)
-    tk.Entry(edit_window, textvariable=title_var).grid(row=0,column=1)
-    tk.Entry(edit_window, textvariable=description_var).grid(row=1,column=1)
-    tk.Entry(edit_window, textvariable=category_var).grid(row=2,column=1)
+    tk.Entry(edit_window, textvariable=title_var, width=60).grid(row=0,column=1)
+    tk.Entry(edit_window, textvariable=description_var, width=60).grid(row=1,column=1)
+    tk.Entry(edit_window, textvariable=category_var, width=60).grid(row=2,column=1)
 
     cancel_button = tk.Button(edit_window,text='Cancel', command=lambda: cancel_function())
     save_button = tk.Button(edit_window,text='Save', command=lambda: save_function(index, title_var, description_var, category_var))
@@ -127,7 +127,7 @@ def display_task(task_list):
             task_frame(personal_frame, task_list[i], index=i)
 
         if task_list[i].category == 'urgent':
-            task_frame(work_frame, task_list[i], index=i)
+            task_frame(urgent_frame, task_list[i], index=i)
 
 def destory_all_task():
     for child in work_frame.winfo_children():
